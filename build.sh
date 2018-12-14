@@ -2,6 +2,7 @@
 
 ogg_ver=1.3.3
 vor_ver=1.3.6
+theora_ver=1.1.1
 
 if [ "$1" == clean ]; then
   rm -rf obj
@@ -31,13 +32,16 @@ function unpack-and-configure {
 
 unpack-and-configure ogg $ogg_ver
 unpack-and-configure vorbis $vor_ver
+unpack-and-configure theora $theora_ver
 
-ndk-build OGG_DIR=libogg-$ogg_ver VORBIS_DIR=libvorbis-$vor_ver
+ndk-build OGG_DIR=libogg-$ogg_ver VORBIS_DIR=libvorbis-$vor_ver THEORA_DIR=libtheora-$theora_ver
 
 mkdir -p inc/ogg
 mkdir -p inc/vorbis
+mkdir -p inc/theora
 cp ./libogg-$ogg_ver/include/ogg/*.h ./inc/ogg
 cp ./libvorbis-$vor_ver/include/vorbis/*.h ./inc/vorbis
+cp ./libtheora-$theora_ver/include/theora/*.h ./inc/theora
 
 mkdir -p lib/armeabi-v7a
 mkdir -p lib/x86_64
@@ -45,10 +49,13 @@ mkdir -p lib/arm64-v8a
 mkdir -p lib/x86
 cp ./obj/local/armeabi-v7a/libogg.a ./lib/armeabi-v7a
 cp ./obj/local/armeabi-v7a/libvorbis.a ./lib/armeabi-v7a
+cp ./obj/local/armeabi-v7a/libtheora.a ./lib/armeabi-v7a
 cp ./obj/local/x86_64/libogg.a ./lib/x86_64
 cp ./obj/local/x86_64/libvorbis.a ./lib/x86_64
+cp ./obj/local/x86_64/libtheora.a ./lib/x86_64
 cp ./obj/local/arm64-v8a/libogg.a ./lib/arm64-v8a
-cp ./obj/local/arm64-v8a/libvorbis.a ./lib/arm64-v8a
+cp ./obj/local/arm64-v8a/libtheora.a ./lib/arm64-v8a
 cp ./obj/local/x86/libogg.a ./lib/x86
 cp ./obj/local/x86/libvorbis.a ./lib/x86
+cp ./obj/local/x86/libtheora.a ./lib/x86
 

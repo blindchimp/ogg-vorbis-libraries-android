@@ -1,0 +1,5 @@
+obj/
+inc/
+lib*/
+/lib/
+lib*.gz
