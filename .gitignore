@@ -1,5 +1,4 @@
 obj/
 inc/
-lib*/
-/lib/
+lib?*/
 lib*.gz
